@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-500: #5eead4; /* Cyan/Mint neon */
+  --color-brand-900: #134e4a;
+  
+  --font-display: 'Teko', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+}
+
+body {
+  @apply bg-[#0c1012] text-gray-300 antialiased overflow-hidden selection:bg-brand-500 selection:text-black;
+  font-family: var(--font-mono);
+  /* Gritty industrial background */
+  background-image: 
+    url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.05"/></svg>'),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 4px),
+    linear-gradient(180deg, #12181b 0%, #050708 100%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050708; }
+::-webkit-scrollbar-thumb { background: #134e4a; }
+::-webkit-scrollbar-thumb:hover { background: #5eead4; }
+
+/* Metallic Panels */
+.panel-metal {
+  background: linear-gradient(135deg, #1e262a 0%, #11171a 100%);
+  box-shadow: 
+    inset 1px 1px 0px rgba(255,255,255,0.1),
+    inset -1px -1px 0px rgba(0,0,0,0.8),
+    5px 5px 15px rgba(0,0,0,0.5);
+  border: 1px solid #000;
+  position: relative;
+}
+
+/* Rivets for the metal look */
+.panel-metal::before, .panel-metal::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #444, #111);
+  box-shadow: inset 1px 1px 1px rgba(255,255,255,0.2), 1px 1px 2px rgba(0,0,0,0.8);
+}
+.panel-metal::before { top: 8px; left: 8px; }
+.panel-metal::after { top: 8px; right: 8px; }
+
+/* Neon glowing text */
+.text-neon {
+  color: #a7f3d0;
+  text-shadow: 
+    0 0 5px rgba(94,234,212,0.5),
+    0 0 10px rgba(94,234,212,0.3);
+}
+.text-neon-intense {
+  color: #fff;
+  text-shadow: 
+    0 0 5px #5eead4,
+    0 0 15px #5eead4,
+    0 0 30px #14b8a6;
+}
+
+/* Brutalist Button */
+.btn-brutal {
+  background: linear-gradient(to bottom, #111827, #030712);
+  border: 2px solid #5eead4;
+  color: #5eead4;
+  box-shadow: inset 0 0 10px rgba(94,234,212,0.2);
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+.btn-brutal:hover {
+  background: rgba(94,234,212,0.1);
+  box-shadow: inset 0 0 20px rgba(94,234,212,0.4), 0 0 10px rgba(94,234,212,0.5);
+  color: #fff;
+}
+
+/* Slanted decorations */
+.slanted-tab {
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 100%, 0 100%);
+}
+.cut-corner {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+}
+
+/* CRT Scanline overlay */
+.scanlines {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
